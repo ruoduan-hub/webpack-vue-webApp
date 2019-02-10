@@ -36,6 +36,7 @@
 <style lang="scss" scoped>
 .app-container{
     padding-top: 40px;
+    padding-bottom: 50px;
     overflow-x: hidden;//解决bar和header动画效果滚动条问题
 }
 .v-enter{

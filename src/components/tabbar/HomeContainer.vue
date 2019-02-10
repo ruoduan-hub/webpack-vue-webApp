@@ -2,14 +2,8 @@
   <!-- 轮播图 -->
   <div>
     <mt-swipe :auto="4000">
-      <mt-swipe-item>
-        <img src="https://i.loli.net/2019/02/09/5c5ef04f4f7c0.jpg" alt>
-      </mt-swipe-item>
-      <mt-swipe-item>
-        <img src="https://i.loli.net/2019/02/09/5c5ef04f7026b.jpg" alt>
-      </mt-swipe-item>
-      <mt-swipe-item>
-        <img src="https://i.loli.net/2019/02/09/5c5ef04f6c8d0.jpg" alt>
+      <mt-swipe-item v-for="(item, index) in lunbotuList" :key="index">
+        <img :src="item" alt="">
       </mt-swipe-item>
     </mt-swipe>
 
@@ -17,10 +11,10 @@
     <div>
       <ul class="mui-table-view mui-grid-view mui-grid-9">
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-          <a href="#">
+          <router-link to="home/newslist"> 
             <img src="../../images/menu1.png" alt="">
             <div class="mui-media-body">新闻资讯</div>
-          </a>
+          </router-link>
         </li>
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
           <a href="#">
@@ -105,18 +99,22 @@ export default {
     this.getLunbotu();
   },
   methods: {
+      //axios 异步请求 轮播图床
     getLunbotu() {
       //获取轮播图数据方法
-      this.$axios
-        .get("https://i.loli.net/2019/02/09/5c5edbf785f60.jpg")
+      this.$axios.get("https://i.loli.net/2019/02/09/5c5edbf785f60.jpg")
         .then(res => {
-          this.lunbotuList.url = res.config.url;
-          this.lunbotuList.data = res.data;
-          console.log(this.lunbotuList);
+          this.lunbotuList.push(res.config.url);
+          return this.$axios.get("https://i.loli.net/2019/02/09/5c5ef04f7026b.jpg")
         })
-        .catch(err => {
-          Toast("加载失败，请检查网络");
-        });
+        .then(res =>{
+            this.lunbotuList.push(res.config.url);
+            return this.$axios.get("https://i.loli.net/2019/02/09/5c5ef04f6c8d0.jpg")
+        })
+        .then(res =>{
+            this.lunbotuList.push(res.config.url);
+            console.dir(this.lunbotuList);
+        })
     }
   }
 };

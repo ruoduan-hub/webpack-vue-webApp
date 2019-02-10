@@ -7,6 +7,7 @@ Vue.use(VueRouter)
 
 //导入axios
 import axios from 'axios'
+//axios.defaults.baseURL='http://www.escook.cn:3000 '
 //安装 axios
 Vue.prototype.$axios = axios//全局注册axios
 
@@ -24,6 +25,11 @@ Vue.component(SwipeItem.name, SwipeItem)
 //导入路由
 import router from './router.js'
 
+
+//定义全局过滤器
+// Vue.filter('dateFormat',(dataStr, pattern='YYYY-MM-DD HH:mm:ss') =>{
+
+// })
 
 //导入app 根组件
 import app from './App.vue'
