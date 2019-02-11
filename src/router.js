@@ -7,6 +7,7 @@ import MemberContainer from './components/tabbar/MemberContainer.vue'
 import SearchContainer from './components/tabbar/SearchContainer.vue'
 import ShopContainer from './components/tabbar/ShopContainer.vue'
 import NewsList from './components/news/NewsList.vue'
+import NewsInfo from './components/news/NewsInfo.vue'
 
 
 var routes = [
@@ -15,7 +16,8 @@ var routes = [
     { path: '/member', component: MemberContainer },
     { path: '/shopcar', component: ShopContainer },
     { path: '/search', component: SearchContainer },
-    { path: '/home/newslist', component: NewsList }
+    { path: '/home/newslist', component: NewsList },
+    { path: '/home/newsinfo/:id', component: NewsInfo }
 ]
 
 //3.创建路由对象

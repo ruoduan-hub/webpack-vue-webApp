@@ -2,16 +2,16 @@
   <div>
    <ul class="mui-table-view mui-table-view-chevron">
 				<li class="mui-table-view-cell mui-media" v-for="(item, i) in newsList" :key="i">
-					<a class="mui-navigate-right">
+					<router-link :to="'/home/newsinfo/' + item.id" class="mui-navigate-right">
 						<img class="mui-media-object mui-pull-left" :src="item.img">
 						<div class="mui-media-body">
 							<h3>{{ item.msg }}</h3>
 							<p class='mui-ellipsis'>
-                <span>发表时间：2019-1-11</span>
-                <span>点击量：{{item.clicks}}</span>
+                <span>发表时间：{{ item.time | dateFormat('YYYY-MM-DD HH:mm') }}</span>
+                <span>点击量：{{ item.clicks }}</span>
               </p>
 						</div>
-					</a>
+					</router-link>
 				</li>
 			</ul>
   </div>
@@ -54,9 +54,11 @@ export default {
           // console.log(meg.abstract) 
           // console.log(meg.media_info.avatar_url) 
           this.newsList.push({
-            msg:meg.abstract,
+            msg:meg.title,
             img:meg.media_info.avatar_url,
-            clicks:meg.digg_count
+            clicks:meg.comment_count,
+            time:meg.cursor,
+            id:meg.group_id
           })
         });
 
