@@ -5,6 +5,20 @@ import VueRouter from 'vue-router'
 //安装路由
 Vue.use(VueRouter)
 
+//安装图片预览插件
+import VuePreview from 'vue-preview'
+// defalut install
+Vue.use(VuePreview, {
+    mainClass: 'pswp--minimal--dark',
+    barsSize: {top: 0, bottom: 0},
+    captionEl: false,
+    fullscreenEl: false,
+    shareEl: false,
+    bgOpacity: 0.8,
+    tapToClose: true,
+    tapToToggleControls: false
+  })
+
 //导入axios
 import axios from 'axios'
 //axios.defaults.baseURL='http://www.escook.cn:3000 '
@@ -17,11 +31,18 @@ import './lib/mui/css/icons-extra.css'
 
 
 //按需导入mint-ui 组件 
-import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
-Vue.component(Header.name, Header)
-Vue.component(Swipe.name, Swipe)
-Vue.component(SwipeItem.name, SwipeItem)
-Vue.component(Button.name, Button)
+// import { Header, Swipe, SwipeItem, Button, Lazyload  } from 'mint-ui'
+// Vue.component(Header.name, Header)
+// Vue.component(Swipe.name, Swipe)
+// Vue.component(SwipeItem.name, SwipeItem)
+// Vue.component(Button.name, Button)
+// Vue.use(Lazyload);//懒加载
+
+//全局导入mint-ui
+import MintUI from 'mint-ui'
+Vue.use(MintUI)
+import 'mint-ui/lib/style.css'
+
 
 //导入路由
 import router from './router.js'

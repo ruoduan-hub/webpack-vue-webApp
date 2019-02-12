@@ -5,9 +5,9 @@
         <textarea v-model="mypl" maxlength="120" placeholder="最多bb 120字" name="" id="" cols="30" rows="10"></textarea>
         <mt-button @click="pushMypl" type="primary" size="large" >发表评论</mt-button>
 
-        <div v-for="(item, i) in comments" :key="i" class="cmt-list">
+        <div v-for="(item, i) in comments.slice(0, number)" :key="i" class="cmt-list">
             <div class="cmt-item">
-                <div class="cmt-title">第{{ i+1 }}楼&nbsp;&nbsp;匿名用户&nbsp;&nbsp;发表时间:2019-1-19&nbsp;&nbsp;</div>
+                <div class="cmt-title">第{{ i + 1 }}楼&nbsp;&nbsp;匿名用户&nbsp;&nbsp;发表时间:2019-1-19&nbsp;&nbsp;</div>
                 <div class="cmt-body">
                     {{ item.msg }}
                 </div>
@@ -48,13 +48,13 @@
 
 <script>
 import { Toast } from 'mint-ui'
-
 export default {
     data() {
         return {
             pageIndex: 1,//默认是第一页
             comments:[],
-            mypl:''
+            mypl:'',
+            number: 10
         }
     },
     created(){
@@ -82,6 +82,7 @@ export default {
         getMore(){//加载更多
             Toast('正在加载...');
             this.pageIndex++;
+            this.number+=10
             this.getComment();
             
         },

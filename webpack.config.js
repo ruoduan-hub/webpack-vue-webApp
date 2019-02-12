@@ -22,7 +22,7 @@ module.exports = {
     module: {//配置第三方loader 模块
         rules: [//正则-文件匹配规则
             { test: /\.css$/, use: ['style-loader', 'css-loader'] },//配置处理.css 的第三方loader规则
-            {test: /\.scss$/, use:['style-loader', 'css-loader', 'sass-loader']},//sass
+            { test: /\.scss$/, use:['style-loader', 'css-loader', 'sass-loader']},//sass
             { test: /\.(png|jpg|gif)$/, use: 'url-loader?limit=1' },//处理路径
             { test: /\.(eot|svg|ttf|woff|woff2)$/, use: 'url-loader'}, //处理字体文件的loader 配置项
             { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },//babel loader模块 Pexclude【排除】 npm包模块
@@ -43,7 +43,14 @@ module.exports = {
             changeOrigin: true, // 是否修改来源, 为true时会让目标服务器以为是webpack-dev-server发出的请求!
             // '/api/login' =>    target + '/login'
             pathRewrite: {'^/api': '/'} // 将/api开头的请求地址, /api 改为 /, 即 /api/xx 改为 /xx
-            }
+            },
+            '/img/*': {
+                target: 'https://source.unsplash.com/300x300/?book,library', // 目标服务器地址
+                secure: false, // 目标服务器地址是否是安全协议
+                changeOrigin: true, // 是否修改来源, 为true时会让目标服务器以为是webpack-dev-server发出的请求!
+                // '/api/login' =>    target + '/login'
+                pathRewrite: {'^/img': '/'} // 将/api开头的请求地址, /api 改为 /, 即 /api/xx 改为 /xx
+                }
         }
     },
     mode: "development"// |prouduction | none;
