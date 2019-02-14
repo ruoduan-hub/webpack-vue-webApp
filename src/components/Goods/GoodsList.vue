@@ -1,6 +1,6 @@
 <template>
-    <div class="goods-list">
-       <div v-for="(im,i) in 3" :key="i" class="goods-item">
+    <div class="goods-list" tag="div" @click="goDetail(id)">
+       <div v-for="(item,i) in nub" :key="i" class="goods-item">
             <img src="https://m.360buyimg.com/mobilecms/s750x750_jfs/t10675/253/1344769770/66891/92d54ca4/59df2e7fN86c99a27.jpg!q80.dpg.webp" alt="">
             <h1 class="title">Apple iPhone X (A1865) 64GB 深空灰色 移动联通电信4G手机</h1>
             <div class="info">
@@ -13,6 +13,8 @@
                 </p>
             </div>
        </div>
+       <!-- 加载更多 -->
+       <mt-button @click="morelist" type="danger" size="large">加载更多</mt-button>
     </div>
 </template>
 
@@ -67,6 +69,27 @@
 
 <script>
 export default {
-    
+    data(){
+        return {
+            nub: 10,
+            id: 6
+        }
+    },
+    methods: {
+        getgoodslist () {//获取商品列表
+            this.axios.get()
+            .then()
+            .catch(err => {
+                Toast('网络连接不佳')
+            })
+        },
+        morelist(){
+           this.nub+=6
+        },
+        goDetail(id){
+            //使用js 进行路由导航
+            this.$router.push('goodsinfo/' + id);
+        }
+    }
 }
 </script>

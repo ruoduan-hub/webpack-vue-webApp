@@ -2,7 +2,13 @@
     <div class="app-container">
 
         <!-- 顶部header -->
-        <mt-header fixed title="vue-webapp"></mt-header>
+        <mt-header fixed title="vue-webapp">
+            <a @click="getBack" slot="left">
+                <mt-button icon="back">返回</mt-button>
+            </a>
+            <mt-button icon="more" slot="right"></mt-button>
+        </mt-header>
+
         
         <!-- 路由 router-view -->
         <transition>
@@ -89,6 +95,15 @@
 
 <script>
 export default {
-    
+    data() {
+        return {
+            
+        }
+    },
+    methods: {
+        getBack() {
+            this.$router.go(-1)
+        }
+    },
 }
 </script>

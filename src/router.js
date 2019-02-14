@@ -11,6 +11,7 @@ import NewsInfo from './components/news/NewsInfo.vue'
 import PhotoList from './components/photos/PhotoList.vue'
 import PhotoInfo from './components/photos/PhotoInfo.vue'
 import GoodsList from './components/Goods/GoodsList.vue'
+import GoodsInfo from './components/Goods/GoodsInfo.vue'
 
 
 var routes = [
@@ -23,7 +24,8 @@ var routes = [
     { path: '/home/newsinfo/:id', component: NewsInfo },
     { path: '/home/photolist', component: PhotoList },
     { path: '/home/photoinfo/:id', component: PhotoInfo },
-    { path: '/home/goodslist', component: GoodsList }
+    { path: '/home/goodslist', component: GoodsList },
+    { path: '/home/goodsinfo/:id', component: GoodsInfo }
 ]
 
 //3.创建路由对象
