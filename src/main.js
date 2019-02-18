@@ -5,6 +5,21 @@ import VueRouter from 'vue-router'
 //安装路由
 Vue.use(VueRouter)
 
+//注册Vuex
+import Vuex from 'vuex'
+Vue.use(Vuex)
+var store = new Vuex.Store({
+  state: {//this.$store.state.xxx
+    car: []//购物车商品数据，用数组存储
+  },
+  mutations: {//this.$store.commit('fn-name', '按需传递唯一参数')
+
+  },
+  getters: {//this.$store.getters.xxx
+
+  }
+})
+
 //安装图片预览插件
 import VuePreview from 'vue-preview'
 // defalut install
@@ -59,5 +74,6 @@ import app from './App.vue'
 var vm = new Vue({
     el: '#app',
     render: c => c(app),
-    router
+    router,
+    store
 })
