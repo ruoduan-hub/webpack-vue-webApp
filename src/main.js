@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 //安装路由
 Vue.use(VueRouter)
 
-//注册Vuex
+//注册-Vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)
 var store = new Vuex.Store({
