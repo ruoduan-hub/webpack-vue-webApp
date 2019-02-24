@@ -8,15 +8,50 @@ Vue.use(VueRouter)
 //注册-Vuex  
 import Vuex from 'vuex'
 Vue.use(Vuex)
+var car = JSON.parse(localStorage.getItem('car') || '[]') //每次与渲染获取购物车信息
 var store = new Vuex.Store({
   state: {//this.$store.state.xxx
-    car: []//购物车商品数据，用数组存储
+    car: car
   },
   mutations: {//this.$store.commit('fn-name', '按需传递唯一参数')
-
+    addToCar(state, goodsinfo) {//点击加入购物车，保存商品信息到car上
+      var flag = false 
+      state.car.some(item=>{
+        if(item.id == goodsinfo.id) {
+          item.count += parseInt(goodsinfo.count)
+          flag = true
+          return true
+        }
+      })
+      //没有找到
+      if (!flag) {
+        state.car.push(goodsinfo)
+      }
+      //localStorage 储存购物车数据
+      localStorage.setItem('car', JSON.stringify(state.car))
+    },
+    updataGoodsInfo(state, goodsinfo){
+      //修改购物车中商品的数量值
+      state.car.some(item =>{
+        item.count = parseInt(goodsinfo.count)
+        return true
+      })
+      //修改完商品数据，把最新的商品数据保存
+      localStorage.setItem('car', JSON.stringify(state.car))
+    }
   },
   getters: {//this.$store.getters.xxx
-
+    //相当于计算属性，也相当于filters
+    getAllCount(state){
+      var c= 0
+      state.car.forEach(item => {
+        c += item.count
+      })
+      return c
+    },
+    getGoodsSelected(state){
+      return state.car[0].ballFlag
+    }
   }
 })
 

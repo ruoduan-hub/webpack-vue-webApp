@@ -22,7 +22,7 @@
 			    <div class="mui-card-content">
 					<div class="mui-card-content-inner">
                         <p class="price">
-                            市场价：<del>￥ 8299 </del>&nbsp;&nbsp;销售价：<span class="now_price">￥7989</span>
+                            市场价：<del>￥ 8299</del>&nbsp;&nbsp;销售价：<span class="now_price">￥{{ price }}</span>
                         </p>
                         <!-- 数字组件 -->
                         <p>购买数量：<numbox @getcount="getSelectedCount" ></numbox></p>
@@ -62,7 +62,8 @@ export default {
             id: this.$route.params.id,//抽离路由参数
             phoneimg: [],
             ballFlag: false,
-            SeCount: 1
+            SeCount: 1,
+            price: 7989
         }
     },
     methods: {
@@ -92,6 +93,9 @@ export default {
         addToCar(){
             //添加购物车
             this.ballFlag = !this.ballFlag;
+            var goodsInfo = {id: this.id, count: this.SeCount, price: this.price, ballFlag: true}
+            //调用 store中的 mutations 来把商品加入购物车
+            this.$store.commit('addToCar', goodsInfo)
         },
         beforeEnter(el){
             el.style.transform = "translate(0,0)";

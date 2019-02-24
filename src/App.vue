@@ -3,8 +3,8 @@
 
         <!-- 顶部header -->
         <mt-header fixed title="vue-webapp">
-            <a @click="getBack" slot="left">
-                <mt-button icon="back">返回</mt-button>
+            <a @click="getBack" slot="left" >
+                <mt-button v-show="flag" icon="back">返回</mt-button>
             </a>
             <mt-button icon="more" slot="right"></mt-button>
         </mt-header>
@@ -27,7 +27,7 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item-my" to="/shopcar">
-				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span id="badge" class="mui-badge">0</span></span>
+				<span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span id="badge" class="mui-badge"> {{ $store.getters.getAllCount }} </span></span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
             <router-link class="mui-tab-item-my" to="/search">
@@ -97,7 +97,7 @@
 export default {
     data() {
         return {
-            
+            flag: false
         }
     },
     methods: {
@@ -105,5 +105,14 @@ export default {
             this.$router.go(-1)
         }
     },
+    watch: {
+        "$route.path": function(newval){
+            if (newval === '/home') {
+                this.flag = false
+            } else {
+                this.flag = true
+            }
+        }
+    }
 }
 </script>
