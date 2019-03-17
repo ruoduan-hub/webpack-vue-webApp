@@ -1,6 +1,6 @@
 # webpack-vue构建的webapp
 
-- 基于 webpac0 + Vue + MintUI + MUI + Axios 构建的webapp
+- 基于 webpac + Vue + MintUI + MUI + Axios 构建的webapp
 
 ###  项目目录结构
 
